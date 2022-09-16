@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pesto-students/luma-be-team2-gouthamrajan#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "date-fns": "^2.29.2",
     "dotenv": "^16.0.2",
@@ -26,6 +27,6 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   }
 }
