@@ -10,6 +10,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isExpert: {
+    type: Boolean,
+    default: false,
+  },
+
 });
 
 module.exports = mongoose.model('User', userSchema);

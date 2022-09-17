@@ -2,7 +2,7 @@ const User = require('./Model');
 const router = require('express').Router();
 
 router.post('/register', async (req, res) => {
-  const { displayName, email } = req.body;
+  const { displayName,email,isExpert} = req.body;
   if (!displayName || !email)
     return res
       .status(400)
@@ -16,6 +16,7 @@ router.post('/register', async (req, res) => {
     const result = await User.create({
       displayName: displayName,
       email: email,
+      isExpert:isExpert,
       createdAt: new Date().toUTCString(),
       createdBy: 'LUMA_ADMIN',
     });
