@@ -57,6 +57,44 @@ router.post('/getUserName', async (req, res) => {
   }
 });
 
+router.post('/get-user-info', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res
+        .status(200)
+        .send({ message: 'User does not exist', success: false });
+    } else {
+      res.status(200).send({
+        success: true,
+        data: user,
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: 'Error getting user info', success: false, error });
+  }
+});
+
+router.get('/get-all-approved-experts', async (req, res) => {
+  try {
+    const doctors = await Expert.find({ status: 'approved' });
+    res.status(200).send({
+      message: 'Expert fetched successfully',
+      success: true,
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: 'Error applying expert account',
+      success: false,
+      error,
+    });
+  }
+});
+
 module.exports = {
   router,
 };
