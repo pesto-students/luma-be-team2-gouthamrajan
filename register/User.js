@@ -1,8 +1,9 @@
 const User = require('./Model');
+const Expert = require('../experts/Model');
 const router = require('express').Router();
 
 router.post('/register', async (req, res) => {
-  const { displayName,email,isExpert} = req.body;
+  const { displayName, email, isExpert } = req.body;
   if (!displayName || !email)
     return res
       .status(400)
@@ -12,14 +13,23 @@ router.post('/register', async (req, res) => {
   if (duplicate) return res.sendStatus(409); //Conflict
 
   try {
-    //create and store the new user
-    const result = await User.create({
-      displayName: displayName,
-      email: email,
-      isExpert:isExpert,
-      createdAt: new Date().toUTCString(),
-      createdBy: 'LUMA_ADMIN',
-    });
+    //create and store the new user if isExpert is false
+    let result = null;
+    if (!isExpert) {
+      result = await User.create({
+        displayName: displayName,
+        email: email,
+        createdAt: new Date().toUTCString(),
+        createdBy: 'LUMA_ADMIN',
+      });
+    } else {
+      result = await Expert.create({
+        displayName: displayName,
+        email: email,
+        createdAt: new Date().toUTCString(),
+        createdBy: 'LUMA_ADMIN',
+      });
+    }
 
     console.log(result);
 

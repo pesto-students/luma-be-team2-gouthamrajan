@@ -3,16 +3,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const errorHandler = require('./middleware/errorHandler');
-const {router:Webrtc} = require("./webrtc/Webrtc")
+const { router: Webrtc } = require('./webrtc/Webrtc');
 const { router: registerRouter } = require('./register/User');
+const { router: expertRouter } = require('./experts/Expert');
+const cors = require('cors');
 
 connectDB();
 const app = express();
 
 app.use(express.json());
-
-app.use('/', registerRouter);
-app.use('/meeting',Webrtc)
+app.use(
+  cors({
+    origin: '*',
+  })
+);
+app.use(registerRouter);
+app.use(expertRouter);
+app.use('/meeting', Webrtc);
 app.use(errorHandler);
 
 mongoose.connection.once('open', () => {

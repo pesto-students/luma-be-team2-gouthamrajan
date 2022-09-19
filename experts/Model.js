@@ -1,12 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const expertSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-
-    lastName: {
+    displayName: {
       type: String,
       required: true,
     },
@@ -16,29 +11,29 @@ const expertSchema = new mongoose.Schema(
     },
     specialization: {
       type: String,
-      required: true,
+      // required: true,
     },
     experience: {
       type: String,
-      required: true,
+      // required: true,
     },
     feePerCunsultation: {
       type: Number,
-      required: true,
+      // required: true,
     },
-    timings : {
+    timings: {
       type: Array,
-      required: true,
+      // required: true,
     },
-    status: {
-      type: String,
-      default: "pending",
-    }
+    // status: {
+    //   type: String,
+    //   default: "pending",
+    // }
   },
   {
     timestamps: true,
   }
 );
 
-const expertModel = mongoose.model("expert", expertSchema);
+const expertModel = mongoose.model('expert', expertSchema);
 module.exports = expertModel;
