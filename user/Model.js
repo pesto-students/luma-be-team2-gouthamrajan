@@ -10,6 +10,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isExpert: {
+    type: Boolean,
+    default: false,
+  },
+  seenNotifications: {
+    type: Array,
+    default: [],
+  },
+  unseenNotifications: {
+    type: Array,
+    default: [],
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

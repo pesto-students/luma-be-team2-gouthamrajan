@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const errorHandler = require('./middleware/errorHandler');
 const { router: Webrtc } = require('./webrtc/Webrtc');
-const { router: registerRouter } = require('./register/User');
-const { router: expertRouter } = require('./experts/Expert');
+const { router: registerRouter } = require('./user/User');
+const { router: expertRouter } = require('./expert/Expert');
+const { router: adminRouter } = require('./admin/Admin');
 const cors = require('cors');
 
 connectDB();
@@ -19,6 +20,7 @@ app.use(
 );
 app.use(registerRouter);
 app.use(expertRouter);
+app.use(adminRouter);
 app.use('/meeting', Webrtc);
 app.use(errorHandler);
 

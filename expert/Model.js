@@ -25,10 +25,10 @@ const expertSchema = new mongoose.Schema(
       type: Array,
       // required: true,
     },
-    // status: {
-    //   type: String,
-    //   default: "pending",
-    // }
+    status: {
+      type: String,
+      default: 'pending',
+    },
   },
   {
     timestamps: true,

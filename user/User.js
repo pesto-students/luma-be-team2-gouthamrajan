@@ -1,6 +1,7 @@
-const User = require('./Model');
-const Expert = require('../experts/Model');
 const router = require('express').Router();
+const moment = require('moment');
+const User = require('./Model');
+const Expert = require('../expert/Model');
 
 router.post('/register', async (req, res) => {
   const { displayName, email, isExpert } = req.body;
@@ -89,6 +90,35 @@ router.get('/get-all-approved-experts', async (req, res) => {
     console.log(error);
     res.status(500).send({
       message: 'Error applying expert account',
+      success: false,
+      error,
+    });
+  }
+});
+
+router.post('/book-appointment', async (req, res) => {
+  try {
+    req.body.status = 'pending';
+    req.body.date = moment(req.body.date, 'DD-MM-YYYY').toISOString();
+    req.body.time = moment(req.body.time, 'HH:mm').toISOString();
+    const newAppointment = new Appointment(req.body);
+    await newAppointment.save();
+    //pushing notification to doctor based on his userid
+    const user = await User.findOne({ _id: req.body.doctorInfo.userId });
+    user.unseenNotifications.push({
+      type: 'new-appointment-request',
+      message: `A new appointment request has been made by ${req.body.userInfo.name}`,
+      onClickPath: '/doctor/appointments',
+    });
+    await user.save();
+    res.status(200).send({
+      message: 'Appointment booked successfully',
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: 'Error booking appointment',
       success: false,
       error,
     });

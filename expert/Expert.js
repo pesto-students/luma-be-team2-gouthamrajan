@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Expert = require('../experts/Model');
+const Expert = require('./Model');
 
 router.post('/get-expert-info', async (req, res) => {
   try {
