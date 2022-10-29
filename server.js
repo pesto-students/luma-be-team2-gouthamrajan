@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const errorHandler = require('./middleware/errorHandler');
 const { router: Webrtc } = require('./webrtc/Webrtc');
-const { router: registerRouter } = require('./user/User');
-const { router: expertRouter } = require('./expert/Expert');
-const { router: adminRouter } = require('./admin/Admin');
+const { router: registerRouter } = require('./routes/userRoutes');
+const { router: expertRouter } = require('./routes/expertRoute');
+const { router: adminRouter } = require('./routes/adminRoute');
 const cors = require('cors');
 
 connectDB();
 const app = express();
-
+app.use(express.json())
 app.use(express.json());
 app.use(
   cors({
@@ -24,9 +24,10 @@ app.use(adminRouter);
 app.use('/meeting', Webrtc);
 app.use(errorHandler);
 
+
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-  app.listen(process.env.PORT || 4000, () =>
+  app.listen(process.env.PORT || 5500, () =>
     console.log(`Server running on port ${process.env.PORT}`)
   );
 });
