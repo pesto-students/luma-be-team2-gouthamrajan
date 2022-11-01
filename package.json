@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Welcome to Pesto assignments.",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
+    "start": "node server.js",
     "devStart": "nodemon server.js"
   },
   "repository": {
