@@ -11,19 +11,23 @@ const cors = require('cors');
 
 connectDB();
 const app = express();
-app.use(express.json())
+app.use(express.json());
 app.use(express.json());
 app.use(
   cors({
     origin: '*',
   })
 );
+
+app.get('/', (req, res) => {
+  res.end('Hello from index!!!');
+});
+
 app.use(registerRouter);
 app.use(expertRouter);
 app.use(adminRouter);
 app.use('/meeting', Webrtc);
 app.use(errorHandler);
-
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
