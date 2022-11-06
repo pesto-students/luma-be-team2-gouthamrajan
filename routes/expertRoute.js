@@ -51,13 +51,17 @@ router.post('/get-expert-info-by-id', authMiddleware, async (req, res) => {
       .send({ message: 'Error getting expert info', success: false, error });
   }
 });
+
 router.get(
   '/get-appointments-by-expert-id',
   authMiddleware,
   async (req, res) => {
     try {
       const expert = await Expert.find({ userId: req.body.userId });
-      const appointments = await Appointment.find({ expertId: expert._id });
+      console.log(expert);
+      const appointments = await Appointment.find({
+        userId: req.body.userId,
+      });
       res.status(200).send({
         message: 'Appointment fetched successfully',
         success: true,
