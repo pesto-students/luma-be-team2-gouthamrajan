@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const errorHandler = require('./middleware/errorHandler');
-const { router: Webrtc } = require('./webrtc/Webrtc');
 const { router: registerRouter } = require('./routes/userRoutes');
 const { router: expertRouter } = require('./routes/expertRoute');
 const { router: adminRouter } = require('./routes/adminRoute');
@@ -27,7 +26,6 @@ app.get('/', (req, res) => {
 app.use(registerRouter);
 app.use(expertRouter);
 app.use(adminRouter);
-app.use('/meeting', Webrtc);
 app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
