@@ -57,7 +57,7 @@ router.get(
   async (req, res) => {
     try {
       const expert = await Expert.find({ userId: req.body.userId });
-      const appointments = await Appointment.find({ _id: expert._Id });
+      const appointments = await Appointment.find({ expertId: expert._id });
       res.status(200).send({
         message: 'Appointment fetched successfully',
         success: true,
