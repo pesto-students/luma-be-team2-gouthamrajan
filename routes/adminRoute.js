@@ -77,4 +77,26 @@ router.post(
   }
 );
 
+router.post('/change-user-account-status', authMiddleware, async (req, res) => {
+  try {
+    const { userId, status } = req.body;
+
+    const user = await User.findOne({ _id: userId });
+    user.status = status;
+    await user.save();
+    res.status(200).send({
+      message: `User status updated successfully with status ${status}`,
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: 'Error applying users account',
+      success: false,
+      error,
+    });
+  }
+});
+
 module.exports = { router };
