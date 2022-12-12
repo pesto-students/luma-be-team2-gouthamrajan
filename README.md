@@ -1,21 +1,45 @@
-# Pesto Assignments
+# LUMA : Powering your financial dream
 
-Welcome to Pesto assignments.
+LUMA is one-stop solution for getting financial advice from an expert in
+straightforward manner. Finance is not merely about making money. LUMA experts
+aren't just those who manage your investments, they also help you with your
+savings, retirement planning, taxation, help you understand stock market concepts,
+and other matters.
+
+## Table of Contents :
+1. [Demo](#demo)
+2. [Installation](#installation)
+3. [Technology Stack](#technology-stack)
+4. [Authors](#authors)
+5. [License](#license)
+
+### Demo
+[Live Demo](https://luma-pesto.netlify.app/login)
 
 
-## How to solve assignments
+### Installation
 
-Weekly Assignments will be shared by your mentor or instructor.
+1. Fork or directly clone this repository to your local machine.
 
-Make sure master or main branch is protected and you are not able to push any code directly to master.
+2. Use the npm install command to install dependencies.
 
-- Clone this repo to your local.
-- Checkout to new branch for submission. Suggestion you can name new branch week wise - branch for week 1 assignment can be week1
-```bash
-git checkout -b week1
-```
-- Create Assignment week folder in root directory(if it doesn't exist) for eg. for solving week 1 assignment create folder with name "week1".
-- You can create subfolders in main week(week1) folder if required.
-- Add proper readme [(How to Write proper readme](https://meakaakka.medium.com/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3) )in week's folder or subfolder explaining about assignment, how to run assignment and any other instructions. 
-- Raise a PR against master and add your mentor as reviewer
-- Resolve PR comments if any and once your mentor approves your PR, Merge it.
+3. Once the dependencies are finished installing, use the npm start command inside the root directory to open the app in your local browser of choice.
+
+
+
+### Technology Stack
+
+We tried to use a completely modern tech stack while testing out some new technologies that we had never used before. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. We used:
+
+ * Node.JS
+ * Express.Js
+ * MongoDB
+ * JWT Authentication and Password hashing
+
+
+### Authors 
+   * Kumar Advait
+   * Ketan Gadwale
+   
+### License
+    MIT
